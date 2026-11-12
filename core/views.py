@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Area, Publico, Curso
 from .forms import AreaForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def autenticar(request):
@@ -18,6 +19,11 @@ def autenticar(request):
             return render(request, 'login.html')
     return render(request, 'login.html')
 
+def desconectar(request):
+    logout(request)
+    return redirect('inicial')
+
+@login_required
 def perfil(request):
     return render(request, 'perfil.html')
 

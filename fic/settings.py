@@ -128,3 +128,5 @@ MAILERS = {
 }
 
 AUTH_USER_MODEL = 'core.Usuario'
+
+LOGIN_URL = 'autenticar'
