@@ -21,6 +21,7 @@ from core.views import *
 urlpatterns = [
     path('', inicial, name='inicial'),
     path('autenticar/', autenticar, name='autenticar'),
+    path('cadastro/', cadastro, name='cadastro'),
     path('desconectar/', desconectar, name='desconectar'),
     path('perfil/', perfil, name='perfil'),
     path('areas/', areas, name='areas'),

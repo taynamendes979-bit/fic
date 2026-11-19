@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Area, Publico, Curso
-from .forms import AreaForm
+from .forms import AreaForm, UsuarioCadastroForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 
 def autenticar(request):
     if request.POST:
@@ -26,6 +25,16 @@ def desconectar(request):
 @login_required
 def perfil(request):
     return render(request, 'perfil.html')
+
+def cadastro(request):
+    form = UsuarioCadastroForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('autenticar')
+    context = {
+        'form': form
+    }
+    return render(request, 'cadastro.html', context)
 
 def inicial(request):
     return render(request, 'index.html')
